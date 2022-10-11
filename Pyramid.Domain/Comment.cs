@@ -13,7 +13,7 @@ public class Comment
     public Guid AuthorId { get; }
     public string Content { get; private set; }
 
-    public void Edit(string newContent)
+    internal void Edit(string newContent)
     {
         Content = newContent;
     }

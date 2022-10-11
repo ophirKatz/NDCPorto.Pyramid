@@ -1,20 +1,18 @@
-﻿namespace Pyramid.Domain;
+﻿using Pyramid.Domain.Exceptions;
 
-public static class CommentContentModerationValidator
+namespace Pyramid.Domain;
+
+public static class CommentModeration
 {
     private static readonly string[] BadWords = { "flibbertigibbet" };
 
-    internal static bool IsValid(string content)
+    internal static string Check(string content)
     {
-        return BadWords.All(badWord => !content.Contains(badWord));
-    }
-}
+        if (BadWords.Any(content.Contains))
+        {
+            throw new CommentModerationException(content);
+        }
 
-public class CommentModerationException : Exception
-{
-    public CommentModerationException(string content) : base(
-        $"The comment \"{content}\" did not pass moderation and is not allowed")
-    {
-
+        return content;
     }
 }
