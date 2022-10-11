@@ -3,7 +3,7 @@
 /// <summary>
 /// This is an aggregate
 /// </summary>
-public class Post
+public class Post : AggregateBase
 {
     public Post(Guid id, string content)
     {
@@ -44,6 +44,22 @@ public class Post
         _comments.Add(comment);
         return comment.Id;
     }
+
+    //// Comment w\ side-effects
+    //public Guid Comment(Guid authorId, string content)
+    //{
+    //    try
+    //    {
+    //        var comment = new Comment(Guid.NewGuid(), authorId, content);
+    //        _comments.Add(comment);
+    //        return comment.Id;
+    //    }
+    //    catch (CommentModerationException)
+    //    {
+    //        Events.Add(new CommentBlocked(Id, authorId, content));
+    //        return Guid.Empty;
+    //    }
+    //}
 
     public void EditComment(Guid commentId, string newContent)
     {

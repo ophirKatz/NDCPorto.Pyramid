@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pyramid.Application\Pyramid.Application.csproj" />
     <ProjectReference Include="..\Pyramid.Domain\Pyramid.Domain.csproj" />
   </ItemGroup>
 

@@ -1,10 +1,17 @@
 ﻿using Pyramid.Domain;
+using Pyramid.Domain.Events;
 
 namespace Pyramid.Infrastructure;
 
 public class InMemoryPostRepository : IPostRepository
 {
+    private readonly IEventPublisher _eventPublisher;
     private readonly List<Post> _posts = new();
+
+    public InMemoryPostRepository(IEventPublisher eventPublisher)
+    {
+        _eventPublisher = eventPublisher;
+    }
 
     public Post GetPost(Guid postId)
     {
@@ -19,7 +26,13 @@ public class InMemoryPostRepository : IPostRepository
 
     public Post Update(Post post)
     {
-        // Nothing to do for in-memory collection
+        // Triggering all domain-event handlers (side-effects)
+        var domainEvents = post.Events.ToList();
+        foreach (var domainEvent in domainEvents)
+        {
+            _eventPublisher.Publish(domainEvent);
+        }
+
         return post;
     }
 }

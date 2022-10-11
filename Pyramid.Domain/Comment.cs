@@ -7,6 +7,7 @@ public class Comment
         Id = id;
         AuthorId = authorId;
         Content = content;
+        //Content = CommentModeration.Check(content);
     }
 
     public Guid Id { get; }
