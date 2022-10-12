@@ -1,7 +1,12 @@
 using FluentAssertions;
+using FluentAssertions.Execution;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Pyramid.Application;
 using Pyramid.Domain;
+using Pyramid.Domain.Events;
+using Pyramid.Infrastructure;
 using System;
 using System.Linq;
 using Xunit;
@@ -46,7 +51,7 @@ public class PostServiceTests
     //{
     //    // Arrange
     //    var post = new Post(Guid.NewGuid(), "Some content");
-        
+
     //    // Setup MediatR...
     //    var services = new ServiceCollection();
     //    services.AddMediatR(typeof(CommentBlocked).Assembly, typeof(PostEventHandlers).Assembly);

@@ -19,37 +19,37 @@ public partial class PostTests
         var post = new Post(Guid.NewGuid(), "Some content");
 
         // Act
-        var commendId = post.Comment(authorId, content);
+        var commentId = post.Comment(authorId, content);
 
         // Assert
         using (new AssertionScope())
         {
-            var assertion = post.Comments.Should().Contain(c => c.Id == commendId);
+            var assertion = post.Comments.Should().Contain(c => c.Id == commentId);
             var comment = assertion.Subject;
             comment.AuthorId.Should().Be(authorId);
             comment.Content.Should().Be(content);
         }
     }
 
-    //[Fact]
-    //public void Comment_WithBadWord_ShouldThrowModerationException()
-    //{
-    //    // Arrange
-    //    var authorId = Guid.NewGuid();
-    //    const string content = "flibbertigibbet";
-    //    var post = new Post(Guid.NewGuid(), "Some content");
+    [Fact]
+    public void Comment_WithBadWord_ShouldThrowModerationException()
+    {
+        // Arrange
+        var authorId = Guid.NewGuid();
+        const string content = "flibbertigibbet";
+        var post = new Post(Guid.NewGuid(), "Some content");
 
-    //    // Act
-    //    var action = () => post.Comment(authorId, content);
+        // Act
+        var action = () => post.Comment(authorId, content);
 
-    //    // Assert
-    //    using (new AssertionScope())
-    //    {
-    //        var assertion = action.Should().Throw<CommentModerationException>();
-    //        var exception = assertion.Subject.First();
-    //        exception.Message.Should().Be($"The comment \"{content}\" did not pass moderation and is not allowed");
-    //    }
-    //}
+        // Assert
+        using (new AssertionScope())
+        {
+            var assertion = action.Should().Throw<CommentModerationException>();
+            var exception = assertion.Subject.First();
+            exception.Message.Should().Be($"The comment \"{content}\" did not pass moderation and is not allowed");
+        }
+    }
 
     [Fact]
     public void EditComment_ForExistingComment_ShouldChangeTheContent()
@@ -59,15 +59,15 @@ public partial class PostTests
         const string content = "Some comment content";
         const string newContent = "Some new content";
         var post = new Post(Guid.NewGuid(), "Some content");
-        var commendId = post.Comment(authorId, content);
+        var commentId = post.Comment(authorId, content);
 
         // Act
-        post.EditComment(commendId, newContent);
+        post.EditComment(commentId, newContent);
 
         // Assert
         using (new AssertionScope())
         {
-            var assertion = post.Comments.Should().Contain(c => c.Id == commendId);
+            var assertion = post.Comments.Should().Contain(c => c.Id == commentId);
             var comment = assertion.Subject;
             comment.Content.Should().Be(newContent);
         }

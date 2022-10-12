@@ -28,6 +28,7 @@ public class Post : AggregateBase
 
     public void ToggleLike(Guid likerId)
     {
+        // TODO : Remove else
         if (_likes.Contains(likerId))
         {
             _likes.Remove(likerId);
