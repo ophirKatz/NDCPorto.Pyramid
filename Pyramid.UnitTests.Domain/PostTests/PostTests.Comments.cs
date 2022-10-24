@@ -2,6 +2,7 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Pyramid.Domain;
 using Pyramid.Domain.Exceptions;
+using Pyramid.Tests.EntityBuilders;
 using System;
 using System.Linq;
 using Xunit;

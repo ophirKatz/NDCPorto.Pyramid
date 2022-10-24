@@ -80,4 +80,30 @@ public class PostServiceTests
     //        _adminEmailMock.Verify(email => email.Send(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
     //    }
     //}
+
+    //[Fact]
+    //public void AddBotCommentOnPost_WithAntiPatterns()
+    //{
+    //    // Arrange
+    //    var post = new Post(Guid.NewGuid(), "Some content");
+    //    // Mocking the repository
+    //    _postRepositoryMock.Setup(repo => repo.GetPost(It.IsAny<Guid>()))
+    //        .Returns(post);
+    //    var postRepository = _postRepositoryMock.Object;
+
+    //    const string botComment = "The earth is flat!";
+    //    // Mocking the comment bot
+    //    _commentBotMock.Setup(bot => bot.GetNextComment())
+    //        .Returns(botComment);
+    //    // Creating the SUT, passing the mocks as dependencies
+    //    var sut = new PostService(postRepository, _commentBotMock.Object);
+
+    //    // Act
+    //    sut.AddBotCommentOnPost(post.Id, Guid.NewGuid());
+
+    //    // Assert
+    //    // DO NOT DO THIS - assertion on a stub interface is an anti-pattern.
+    //    // It represents an implementation detail, and is not part of the end-result of the use-case.
+    //    _postRepositoryMock.Verify(repo => repo.GetPost(It.IsAny<Guid>()), Times.Once);
+    //}
 }

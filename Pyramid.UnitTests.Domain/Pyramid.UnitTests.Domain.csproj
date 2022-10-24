@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pyramid.Domain\Pyramid.Domain.csproj" />
+    <ProjectReference Include="..\Pyramid.Tests.EntityBuilders\Pyramid.Tests.EntityBuilders.csproj" />
   </ItemGroup>
 
 </Project>
