@@ -32,6 +32,29 @@ public partial class PostTests
     }
 
     [Fact]
+    public void Comment_WhenThereAreAlready10Comments_ShouldNotAddCommentAndReturnEmptyGuid()
+    {
+        // Arrange
+        var authorId = Guid.NewGuid();
+        const string content = "Some comment content";
+        var post = new Post(Guid.NewGuid(), "Some content");
+        for (var i = 0; i < 10; i++)
+        {
+            post.Comment(authorId, "");
+        }
+
+        // Act
+        var commentId = post.Comment(authorId, content);
+
+        // Assert
+        using (new AssertionScope())
+        {
+            post.Comments.Count().Should().Be(10);
+            commentId.Should().Be(Guid.Empty);
+        }
+    }
+
+    [Fact]
     public void Comment_WithBadWord_ShouldThrowModerationException()
     {
         // Arrange

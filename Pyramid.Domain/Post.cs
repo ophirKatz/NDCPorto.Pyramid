@@ -41,6 +41,11 @@ public class Post : AggregateBase
 
     public Guid Comment(Guid authorId, string content)
     {
+        if (_comments.Count == 10)
+        {
+            return Guid.Empty;
+        }
+
         var comment = new Comment(Guid.NewGuid(), authorId, content);
         _comments.Add(comment);
         return comment.Id;
